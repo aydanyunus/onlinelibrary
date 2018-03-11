@@ -1,0 +1,30 @@
+﻿@model LibraryWebsite.Models.Books_To_Authors
+
+@using LibraryWebsite.Models;
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="header">
+        <h2 class="text-center">@Model.Book.BookName</h2>
+        <hr />
+    </div>
+    <div class="col-md-4">
+        <div class="bookItem">
+            <img class="img-thumbnail" src="~/Uploads/@Model.Book.Photo" />
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div>
+            <h2 class="alert alert-info">Author: @Model.Author.Name </h2>
+            <div class="text-muted">
+                @Model.Book.Content
+            </div>
+            <div class="fileReader">
+                <a href="~/Uploads/File/@Model.Book.PDFfile" target="_blank" class="btn btn-success">Read PDF</a>
+            </div>
+        </div>
+    </div>
+</div>
+

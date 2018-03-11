@@ -1,0 +1,52 @@
+﻿
+@using LibraryWebsite.Models
+@model IEnumerable<LibraryWebsite.Models.Books_To_Readers>
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row bookspage">
+
+    @foreach (var item in Model)
+    {
+
+        <div class="col-md-12">
+            <div class="bookHolder col-md-4">
+                <div class="innerCol">
+                    <a href="@Url.Action("Details", "Home",  new { id = item.Book.id })" class="bookLink">
+                        <div class="book">
+                            <img src="~/Uploads/@item.Book.Photo">
+                        </div>
+                    </a>
+                    <span class="text-center">Book: @item.Book.BookName</span>
+                    @if (!String.IsNullOrWhiteSpace(item.Book.Content))
+                    {
+                        if (item.Book.Content.Length > 60)
+                        {
+                            <p class="text-center text-muted desc">@item.Book.Content.ToString().Substring(0, 60) &hellip;</p>
+                        }
+                        else
+                        {
+                            <p class="text-center text-muted desc">@item.Book.Content</p>
+                        }
+                    }
+                    <span class="giveBack" data-toggle="tooltip" data-placement="left" title="" data-original-title="Give back!">
+
+                        <i data-id="@item.id" class="fa fa-close"></i>
+
+
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<script src="http://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="~/Public/bundles/main.js"></script>

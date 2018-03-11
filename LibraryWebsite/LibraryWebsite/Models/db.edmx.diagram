@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e046d191aff5435ead25a0f9579386af" Name="Diagram1">
+        <EntityTypeShape EntityType="LibraryWebsiteModel.Author" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryWebsiteModel.Book" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryWebsiteModel.Books_To_Authors" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryWebsiteModel.Reader" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="LibraryWebsiteModel.FK__Books_To___Autho__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryWebsiteModel.FK__Books_To___Book___276EDEB3" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LibraryWebsiteModel.AdminInfo" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="LibraryWebsiteModel.Books_To_Readers" Width="1.5" PointX="5" PointY="4.25" />
+        <EntityTypeShape EntityType="LibraryWebsiteModel.Header" Width="1.5" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="LibraryWebsiteModel.FK__Books_To___Book___31EC6D26" />
+        <AssociationConnector Association="LibraryWebsiteModel.FK__Books_To___Reade__32E0915F" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

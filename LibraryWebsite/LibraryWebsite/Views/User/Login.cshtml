@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+@if (ViewBag.LoginError != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.LoginError
+    </div>
+}
+<div class="container">
+    <div class="userLogin">
+        <form class="form-horizontal" method="post">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" name="Email" id="inputEmail3" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" name="Password" id="inputPassword3" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                    <a href="@Url.Action("Register", "User")">Register</a>
+                </div>
+                
+            </div>
+        </form>
+
+    </div>
+</div>
+

@@ -1,0 +1,82 @@
+﻿@using LibraryWebsite.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library - Home Page</title>
+    <link href="~/Public/Content/cssda38.css?v=ji8pmIU_MC2RUrlC2nCfL7D9_Yw4q9rsApXzA_gYyZA1" rel="stylesheet" />
+    <script src="~/Public/bundles/modernizr8fce?v=wBEWDufH_8Md-Pbioxomt90vm6tJN2Pyy9u9zHtWsPo1"></script>
+
+    <link rel="icon" href="~/Public/Images/SitePhotos/lib.ico">
+    <link rel="stylesheet" href="~/Public/maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar navbar-fixed-top mainNavbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">P204 Library</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav pull-right navbar-nav">
+                    <li><a href="@Url.Action("Index", "Home")">Books</a></li>
+                    <li><a href="@Url.Action("Index", "Readers")">Readers</a></li>
+                    <li>
+                        @if (Session["loggedUser"] == null)
+                        {
+                            <a href="@Url.Action("Login", "User")">Log In</a>
+                        }
+                        else
+                        {
+                            Reader activereader = (Reader)Session["loggedUser"];
+                            <a href="@Url.Action("Details", "User", new { id = activereader.id })">@activereader.Fullname</a>
+
+                        <li>
+                            <a href="@Url.Action("Profile", "User", new { id = activereader.id })">Profile</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Logout", "User")">Log Out</a>
+                        </li>
+
+
+                    }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid body-content">
+            <div class="row mainPage" style="background: url(/Uploads/@ViewBag.header.Background);
+                background-position: center bottom;
+                background-attachment: fixed;
+                background-size: cover;">
+                <div class="container">
+                    <h2>@ViewBag.header.Title</h2>
+                </div>
+            </div>
+
+
+
+            @RenderBody()
+            <hr />
+            <footer class="container">
+                <p>&copy; 2018 - Online Library P204</p>
+            </footer>
+        </div>
+
+        <script src="~/Public/bundles/jqueryc061?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="~/Public/bundles/main.js"></script>
+
+        <script src="~/Public/bundles/bootstrapfe7b?v=NK7nvV0-4eLxU6i-VRR7uInWMdsfSZnUo22ZsPeKPoM1"></script>
+
+
+    </body>
+</html>

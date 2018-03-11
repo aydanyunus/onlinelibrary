@@ -1,0 +1,62 @@
+﻿@model IEnumerable<LibraryWebsite.Models.Books_To_Authors>
+@using LibraryWebsite.Models
+@{
+    ViewBag.Title = "Home Page";
+}
+@if (ViewBag.error != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.error
+    </div>
+}
+<div class="row mainSection">
+    <div class="container">
+        <div class="header">
+            <h2>Full Book List</h2>
+            <hr />
+        </div>
+        <div class="list">
+            @foreach (var item in Model)
+            {
+                if (item.Book.status == 1 && item.Book.TotalCount > 0)
+                {
+                    <div class="bookHolder col-md-3">
+                        <div class="innerCol">
+                            <a href="@Url.Action("Details", "Home", new { id = item.id })" class="bookLink">
+                                <div class="book">
+                                    <img src="~/Uploads/@item.Book.Photo" />
+                                </div>
+                            </a>
+                            <span class="text-center">Book: @item.Book.BookName</span>
+                            <span class="text-center">Author: @item.Author.Name </span>
+                            @if (!String.IsNullOrWhiteSpace(item.Book.Content))
+                            {
+                                if (item.Book.Content.Length > 60)
+                                {
+                                    <p class="text-center text-muted desc">@item.Book.Content.ToString().Substring(0, 60) &hellip;</p>
+                                }
+                                else
+                                {
+                                    <p class="text-center text-muted desc">@item.Book.Content</p>
+                                }
+                            }
+
+                            @if (Session["loggedUser"] != null)
+                            {
+                                <p class="readButton">
+                                    <a data-id="@item.id" class="btn btn-primary getBook">Read this Book</a>
+                                </p>
+                            }
+
+
+                           
+
+                        </div>
+                    </div>
+                }
+
+            }
+
+        </div>
+    </div>
+</div>

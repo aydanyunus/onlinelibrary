@@ -1,0 +1,29 @@
+﻿@model LibraryWebsite.Models.Reader
+@using LibraryWebsite.Models;
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row mainSection">
+    <div class="container">
+        <div class="header">
+            <h1 class="text-center">
+                @Model.Fullname
+            </h1>
+            <hr />
+        </div>
+        <div class="readerSection">
+            <div class="col-md-12">
+                <div class="innerReader">
+                    <img src="~/Uploads/@Model.Photo" class="thumbnail" />
+                    <p class="alert alert-success">@Model.Email</p>
+                    <p class="alert alert-info">@Model.Content</p>
+
+                </div>
+            </div>
+        </div>      
+
+
+    </div>
+</div>

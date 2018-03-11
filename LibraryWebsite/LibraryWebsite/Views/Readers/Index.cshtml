@@ -1,0 +1,48 @@
+﻿@using LibraryWebsite.Models;
+@model IEnumerable<LibraryWebsite.Models.Reader>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row mainSection">
+    <div class="container">
+        <div class="header">
+            <h1>All Readers List</h1>
+            <hr />
+        </div>
+        <div class="readerSection">
+            @foreach (var item in Model)
+             {
+                <div class="col-md-4">
+                    <div class="innerReader">
+                        <a href="@Url.Action("Details", "Readers", new { id = item.id })">
+                            <img src="/Uploads/@item.Photo" class="thumbnail" />
+                        </a>
+                        <p class="alert alert-success">@item.Email</p>
+                        @if (!(String.IsNullOrWhiteSpace(item.Content)))
+                        {
+
+                            if(item.Content.Length > 40)
+                            {
+                               <p class="alert alert-info">@item.Content.ToString().Substring(0, 40) &hellip;</p>
+                            }
+                            else
+                            {
+                                <p class="alert alert-info">@item.Content</p>
+
+                            }
+                        }
+                        
+                        
+                          
+
+                        
+
+                    </div>
+                </div>
+             }            
+            
+        </div>
+    </div>
+</div>
+

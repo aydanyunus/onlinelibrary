@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibraryWebsiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Books_To_Authors" Relationship="Self.FK__Books_To___Autho__286302EC" FromRole="Authors" ToRole="Books_To_Authors" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Books_To_Authors" Relationship="Self.FK__Books_To___Book___276EDEB3" FromRole="Books" ToRole="Books_To_Authors" />
+    <Property Name="PDFfile" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TotalCount" Type="Int32" />
+    <Property Name="GivenBook" Type="Int32" />
+    <Property Name="status" Type="Byte" />
+    <NavigationProperty Name="Books_To_Readers" Relationship="LibraryWebsiteModel.FK__Books_To___Book___31EC6D26" FromRole="Book" ToRole="Books_To_Readers" />
+  </EntityType>
+  <EntityType Name="Books_To_Authors">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Book_id" Type="Int32" />
+    <Property Name="Author_id" Type="Int32" />
+    <NavigationProperty Name="Author" Relationship="Self.FK__Books_To___Autho__286302EC" FromRole="Books_To_Authors" ToRole="Authors" />
+    <NavigationProperty Name="Book" Relationship="Self.FK__Books_To___Book___276EDEB3" FromRole="Books_To_Authors" ToRole="Books" />
+  </EntityType>
+  <EntityType Name="Reader">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fullname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Books_To_Readers" Relationship="LibraryWebsiteModel.FK__Books_To___Reade__32E0915F" FromRole="Reader" ToRole="Books_To_Readers" />
+  </EntityType>
+  <Association Name="FK__Books_To___Autho__286302EC">
+    <End Role="Authors" Type="Self.Author" Multiplicity="0..1" />
+    <End Role="Books_To_Authors" Type="Self.Books_To_Authors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Books_To_Authors">
+        <PropertyRef Name="Author_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Books_To___Book___276EDEB3">
+    <End Role="Books" Type="Self.Book" Multiplicity="0..1" />
+    <End Role="Books_To_Authors" Type="Self.Books_To_Authors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Books_To_Authors">
+        <PropertyRef Name="Book_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibraryWebsiteEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Authors" EntityType="Self.Author" />
+    <EntitySet Name="Books" EntityType="Self.Book" />
+    <EntitySet Name="Books_To_Authors" EntityType="Self.Books_To_Authors" />
+    <EntitySet Name="Readers" EntityType="Self.Reader" />
+    <AssociationSet Name="FK__Books_To___Autho__286302EC" Association="Self.FK__Books_To___Autho__286302EC">
+      <End Role="Authors" EntitySet="Authors" />
+      <End Role="Books_To_Authors" EntitySet="Books_To_Authors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Books_To___Book___276EDEB3" Association="Self.FK__Books_To___Book___276EDEB3">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="Books_To_Authors" EntitySet="Books_To_Authors" />
+    </AssociationSet>
+    <EntitySet Name="AdminInfoes" EntityType="LibraryWebsiteModel.AdminInfo" />
+    <EntitySet Name="Books_To_Readers" EntityType="LibraryWebsiteModel.Books_To_Readers" />
+    <EntitySet Name="Headers" EntityType="LibraryWebsiteModel.Header" />
+    <AssociationSet Name="FK__Books_To___Book___31EC6D26" Association="LibraryWebsiteModel.FK__Books_To___Book___31EC6D26">
+      <End Role="Book" EntitySet="Books" />
+      <End Role="Books_To_Readers" EntitySet="Books_To_Readers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Books_To___Reade__32E0915F" Association="LibraryWebsiteModel.FK__Books_To___Reade__32E0915F">
+      <End Role="Reader" EntitySet="Readers" />
+      <End Role="Books_To_Readers" EntitySet="Books_To_Readers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AdminInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Books_To_Readers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Book_id" Type="Int32" />
+    <Property Name="Reader_id" Type="Int32" />
+    <NavigationProperty Name="Book" Relationship="LibraryWebsiteModel.FK__Books_To___Book___31EC6D26" FromRole="Books_To_Readers" ToRole="Book" />
+    <NavigationProperty Name="Reader" Relationship="LibraryWebsiteModel.FK__Books_To___Reade__32E0915F" FromRole="Books_To_Readers" ToRole="Reader" />
+  </EntityType>
+  <EntityType Name="Header">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Background" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__Books_To___Book___31EC6D26">
+    <End Type="LibraryWebsiteModel.Book" Role="Book" Multiplicity="0..1" />
+    <End Type="LibraryWebsiteModel.Books_To_Readers" Role="Books_To_Readers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Books_To_Readers">
+        <PropertyRef Name="Book_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Books_To___Reade__32E0915F">
+    <End Type="LibraryWebsiteModel.Reader" Role="Reader" Multiplicity="0..1" />
+    <End Type="LibraryWebsiteModel.Books_To_Readers" Role="Books_To_Readers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reader">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Books_To_Readers">
+        <PropertyRef Name="Reader_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

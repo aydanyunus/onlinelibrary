@@ -1,0 +1,32 @@
+﻿@model LibraryWebsite.Models.Reader
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container personalPage">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="profile">
+                    <img class="img-thumbnail" src="~/Uploads/@Model.Photo">
+                </div>
+
+                <div class="text-muted"><span>Email:</span> @Model.Fullname</div>
+                <div class="text-muted"><span>Username:</span> @Model.Username</div>
+                <a class="btn btn-primary btn-lg" href="@Url.Action("Edit", "ReadersEdit", new { id = Model.id })">Edit</a>
+            </div>
+            <div class="col-md-9">
+                <div class="wrapper">
+                    <h1 class="userName">@Model.Fullname</h1>
+                </div>
+                <div class="row">
+                    @Model.Content
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
